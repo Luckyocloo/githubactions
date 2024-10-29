@@ -5,6 +5,7 @@ on:
 
 jobs:
   first_job:
+  name: adwoa 
     runs-on: ubuntu-latest
     steps:
       - name: Welcome message
@@ -12,6 +13,6 @@ jobs:
 
       - name: List and Read files
         run: |
-          echo "My first GitHu Actions Job"
+          echo "My second GitHu Actions Job"
           ls -1
           cat dockerfile
