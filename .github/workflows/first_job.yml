@@ -7,7 +7,7 @@ jobs:
   first_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Welcome message
         uses: actions/checkout@v4
 
       - name: List and Read files
