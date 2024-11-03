@@ -11,4 +11,4 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Docker Build 
-      run: docker build -t docker.io/efotsowoe/resume-app:latest .
+      run: docker build -t docker.io/ocloo/resume-app:latest .
