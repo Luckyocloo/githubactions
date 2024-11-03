@@ -2,26 +2,26 @@ name: Docker Workflow
 
 on:
   - push
-  
-jobs: 
-  docker_build: 
+
+jobs:
+  docker_build:
     runs-on: ubuntu-latest
-    steps: 
-    - name: Checkout Code
-      uses: actions/checkout@v4
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Docker Build 
-      run: docker build -t resume-app:latest .
+      - name: Docker Build
+        run: docker build -t resume-app:latest -f ./.github/Dockerfile .
 
-    - name: Docker Login
-      run: docker login --username=ocloo --password=Welcome##2022
+      - name: Docker Login
+        run: docker login --username=ocloo --password=Welcome##2022
 
-    - name: Docker Publish 
-      run: docker push docker.io/ocloo/resume-app:latest
+      - name: Docker Publish
+        run: docker push docker.io/ocloo/resume-app:latest
 
   docker_deploy:
     needs: docker_build
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
