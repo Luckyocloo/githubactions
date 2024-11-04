@@ -1,0 +1,3 @@
+[submodule ".github/resume-app"]
+	path = .github/resume-app
+	url = https://github.com/JOMACS-IT/resume-app.git
