@@ -32,7 +32,7 @@ jobs:
     group: production-deployment
     cancel-in-progress: true
   runs-on: ubuntu-latest
-  steps:
+    steps:
     - name: Docker Login
       run: docker login --username=${{ vars.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }}
     
