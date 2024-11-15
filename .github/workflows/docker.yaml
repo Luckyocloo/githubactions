@@ -2,8 +2,9 @@ name: Docker Workflow
 
 on:
   workflow_dispatch:
+  # Uncomment the next line if you want to schedule the job (cron syntax):
   # schedule:
-  # - cron: "*/1 * * * *"
+  #   - cron: "*/1 * * * *"
 
 env:
   CONTAINER_REGISTRY: docker.io
@@ -26,17 +27,17 @@ jobs:
         run: docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
 
   deploy:
-  needs: docker
-  concurrency:
-    group: production-deployment
-    cancel-in-progress: true
-  runs-on: ubuntu-latest
-  steps:
-    - name: Docker Login
-      run: docker login --username=${{ vars.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }}
+    needs: docker
+    concurrency:
+      group: production-deployment
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Login
+        run: docker login --username=${{ vars.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Docker Run
-      timeout-minutes: 1
-      run: |
-        docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
-        sleep 300s
+      - name: Docker Run
+        timeout-minutes: 1
+        run: |
+          docker run -d -p 8080:80 ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+          sleep 300s
