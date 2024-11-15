@@ -2,9 +2,8 @@ name: Docker Workflow
 
 on:
   workflow_dispatch:
-  # Uncomment the next line if you want to schedule the job (cron syntax):
-  # schedule:
-  #   - cron: "*/1 * * * *"
+  schedule:
+    - cron: "*/5 * * * *"  # This schedules the job to run every 5 minutes
 
 env:
   CONTAINER_REGISTRY: docker.io
